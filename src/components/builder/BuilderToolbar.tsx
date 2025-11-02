@@ -14,9 +14,11 @@ import {
   Sparkles,
   AlertCircle,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '../../lib/utils';
 import { useBuilderState } from '../../hooks';
 import { KeyboardShortcutsHelp } from '../KeyboardShortcutsHelp';
+import { LanguageSelector } from '../ui/LanguageSelector';
 
 export interface BuilderToolbarProps {
   onSave?: () => void;
@@ -44,6 +46,7 @@ export function BuilderToolbar({
   previewStatus = 'idle',
   className,
 }: BuilderToolbarProps) {
+  const { t } = useTranslation();
   const {
     project,
     updateProject,
@@ -62,7 +65,7 @@ export function BuilderToolbar({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const getTitle = () => {
-    return project?.settings?.projectName || project?.name || 'Mastra Visual Builder';
+    return project?.settings?.projectName || project?.name || t('app.title');
   };
 
   const handleStartEdit = () => {
@@ -137,20 +140,20 @@ export function BuilderToolbar({
             <Edit2 className="h-3 w-3 opacity-0 group-hover:opacity-50 transition-opacity" />
           </button>
         )}
-        {isDirty && <span className="text-xs text-muted-foreground">• Unsaved changes</span>}
+        {isDirty && <span className="text-xs text-muted-foreground">• {t('messages.warning.unsavedChanges')}</span>}
       </div>
 
       {/* Center section - Actions */}
       <div className="flex items-center gap-1">
         {/* Undo/Redo */}
-        <ToolbarButton onClick={undo} disabled={!canUndo} tooltip="Undo (Ctrl+Z)" icon={<Undo className="h-4 w-4" />} />
-        <ToolbarButton onClick={redo} disabled={!canRedo} tooltip="Redo (Ctrl+Y)" icon={<Redo className="h-4 w-4" />} />
+        <ToolbarButton onClick={undo} disabled={!canUndo} tooltip={t('toolbar.undo')} icon={<Undo className="h-4 w-4" />} />
+        <ToolbarButton onClick={redo} disabled={!canRedo} tooltip={t('toolbar.redo')} icon={<Redo className="h-4 w-4" />} />
 
         <div className="mx-2 h-6 w-px bg-border" />
 
         {/* Import/Export */}
-        <ToolbarButton onClick={toggleImportDialog} tooltip="Import" icon={<Upload className="h-4 w-4" />} />
-        <ToolbarButton onClick={toggleExportDialog} tooltip="Export" icon={<Download className="h-4 w-4" />} />
+        <ToolbarButton onClick={toggleImportDialog} tooltip={t('toolbar.import')} icon={<Upload className="h-4 w-4" />} />
+        <ToolbarButton onClick={toggleExportDialog} tooltip={t('toolbar.export')} icon={<Download className="h-4 w-4" />} />
 
         <div className="mx-2 h-6 w-px bg-border" />
 
@@ -158,7 +161,7 @@ export function BuilderToolbar({
         {onOpenCodePreview && (
           <ToolbarButton
             onClick={onOpenCodePreview}
-            tooltip="View Generated Code"
+            tooltip={t('toolbar.codePreview')}
             icon={<Code className="h-4 w-4" />}
           />
         )}
@@ -179,20 +182,20 @@ export function BuilderToolbar({
                   ? 'bg-red-500/10 text-red-500 border border-red-500/20'
                   : 'bg-primary/10 text-primary hover:bg-primary/20'
             )}
-            title="Preview in WebContainer"
+            title={t('toolbar.preview')}
           >
             <Play className="h-4 w-4" />
             {previewStatus === 'running' ? (
               <>
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                Running
+                {t('toolbar.previewStatus.running')}
               </>
             ) : previewStatus === 'booting' || previewStatus === 'installing' || previewStatus === 'starting' ? (
-              'Starting...'
+              t(`toolbar.previewStatus.${previewStatus}`)
             ) : previewStatus === 'error' ? (
-              'Error'
+              t('toolbar.previewStatus.error')
             ) : (
-              'Preview'
+              t('toolbar.previewStatus.idle')
             )}
           </button>
         )}
@@ -206,27 +209,32 @@ export function BuilderToolbar({
         {onOpenProjectSettings && (
           <ToolbarButton
             onClick={onOpenProjectSettings}
-            tooltip="Project Settings"
+            tooltip={t('toolbar.projectSettings')}
             icon={<Settings className="h-4 w-4" />}
           />
         )}
 
         {/* Templates */}
         {onOpenTemplates && (
-          <ToolbarButton onClick={onOpenTemplates} tooltip="Template Library" icon={<Sparkles className="h-4 w-4" />} />
+          <ToolbarButton onClick={onOpenTemplates} tooltip={t('toolbar.templates')} icon={<Sparkles className="h-4 w-4" />} />
         )}
 
         {/* Validation */}
         {onOpenValidation && (
           <ToolbarButton
             onClick={onOpenValidation}
-            tooltip="Validate Project"
+            tooltip={t('toolbar.validation')}
             icon={<AlertCircle className="h-4 w-4" />}
           />
         )}
 
         {/* Keyboard Shortcuts Help */}
         <KeyboardShortcutsHelp />
+
+        <div className="mx-2 h-6 w-px bg-border" />
+
+        {/* Language Selector */}
+        <LanguageSelector />
       </div>
 
       {/* Right section - Save */}
@@ -242,7 +250,7 @@ export function BuilderToolbar({
         >
           <div className="flex items-center gap-2">
             <Save className="h-4 w-4" />
-            Save
+            {t('toolbar.save')}
           </div>
         </button>
       </div>

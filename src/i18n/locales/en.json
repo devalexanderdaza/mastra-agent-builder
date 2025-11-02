@@ -1,0 +1,260 @@
+{
+  "app": {
+    "title": "Mastra Visual Builder",
+    "defaultProjectName": "My Mastra Project",
+    "defaultProjectDescription": "Build your AI experience"
+  },
+  "toolbar": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "save": "Save",
+    "import": "Import",
+    "export": "Export",
+    "preview": "Preview in WebContainer",
+    "previewStatus": {
+      "idle": "Preview",
+      "booting": "Booting...",
+      "installing": "Installing...",
+      "starting": "Starting...",
+      "running": "Running",
+      "error": "Error"
+    },
+    "projectSettings": "Project Settings",
+    "codePreview": "View Code",
+    "templates": "Template Library",
+    "validation": "Validate",
+    "language": "Language"
+  },
+  "nodes": {
+    "agent": {
+      "label": "Agent",
+      "description": "AI agent that can reason and use tools"
+    },
+    "step": {
+      "label": "Step",
+      "description": "Execute custom logic"
+    },
+    "tool": {
+      "label": "Tool",
+      "description": "Create reusable tools"
+    },
+    "map": {
+      "label": "Map",
+      "description": "Transform and map data"
+    },
+    "loop": {
+      "label": "Loop",
+      "description": "While, until, dowhile, dountil"
+    },
+    "foreach": {
+      "label": "For Each",
+      "description": "Iterate over array items"
+    },
+    "parallel": {
+      "label": "Parallel",
+      "description": "Execute branches in parallel"
+    },
+    "router": {
+      "label": "Router/Branch",
+      "description": "Conditional routing"
+    },
+    "sleep": {
+      "label": "Sleep",
+      "description": "Pause for duration"
+    },
+    "sleepUntil": {
+      "label": "Sleep Until",
+      "description": "Pause until specific time"
+    },
+    "waitForEvent": {
+      "label": "Wait For Event",
+      "description": "Wait for event trigger"
+    }
+  },
+  "palette": {
+    "title": "Node Palette",
+    "search": "Search nodes...",
+    "categories": {
+      "all": "All Nodes",
+      "agents": "Agents",
+      "steps": "Steps & Tools",
+      "control": "Control Flow",
+      "timing": "Timing",
+      "favorites": "Favorites",
+      "recent": "Recently Used"
+    },
+    "categoriesLabel": {
+      "agents": "Agents",
+      "steps": "Steps",
+      "controlFlow": "Control Flow",
+      "timing": "Timing",
+      "tools": "Tools"
+    },
+    "noResults": "No nodes found"
+  },
+  "dialogs": {
+    "save": {
+      "title": "Save / Load Project",
+      "saveToBrowser": "Save to Browser",
+      "downloadAsFile": "Download as File",
+      "loadFromBrowser": "Load from Browser",
+      "loadFromFile": "Load from File",
+      "projectName": "Project Name",
+      "enterName": "Enter project name...",
+      "savedProjects": "Saved Projects",
+      "chooseFile": "Choose File",
+      "load": "Load",
+      "delete": "Delete",
+      "lastModified": "Last Modified"
+    },
+    "import": {
+      "title": "Import Project",
+      "description": "Import from file, code, or template",
+      "fromFile": "From File",
+      "fromCode": "Paste Code",
+      "upload": "Upload .mastra.json",
+      "pasteJson": "Paste your project JSON here...",
+      "import": "Import"
+    },
+    "export": {
+      "title": "Export Code",
+      "description": "Export your project as TypeScript code",
+      "downloadZip": "Download as ZIP",
+      "saveToFolder": "Save to Folder",
+      "copyToClipboard": "Copy to Clipboard",
+      "files": "Files"
+    },
+    "templates": {
+      "title": "Template Library",
+      "description": "Start with a pre-built template",
+      "search": "Search templates...",
+      "apply": "Apply Template",
+      "agent": "Agent",
+      "workflow": "Workflow"
+    },
+    "validation": {
+      "title": "Validation Results",
+      "errors": "Errors",
+      "warnings": "Warnings",
+      "info": "Info",
+      "noIssues": "No validation issues found",
+      "validate": "Validate"
+    },
+    "apiKeys": {
+      "title": "API Keys Required",
+      "description": "Enter API keys for the providers used in your project",
+      "provider": "Provider",
+      "apiKey": "API Key",
+      "start": "Start Preview",
+      "cancel": "Cancel"
+    },
+    "preview": {
+      "title": "Preview",
+      "status": "Status",
+      "logs": "Logs",
+      "close": "Close",
+      "stop": "Stop",
+      "restart": "Restart",
+      "clearLogs": "Clear Logs",
+      "openInNewTab": "Open in New Tab"
+    },
+    "projectSettings": {
+      "title": "Project Settings",
+      "general": "General",
+      "storage": "Storage",
+      "logger": "Logger",
+      "telemetry": "Telemetry",
+      "environment": "Environment Variables",
+      "projectName": "Project Name",
+      "projectDescription": "Project Description",
+      "defaultModel": "Default Model"
+    }
+  },
+  "config": {
+    "agent": {
+      "title": "Agent Configuration",
+      "name": "Name",
+      "id": "ID",
+      "instructions": "Instructions",
+      "model": "Model",
+      "tools": "Tools",
+      "workflows": "Workflows",
+      "memory": "Memory",
+      "temperature": "Temperature",
+      "topP": "Top P",
+      "maxTokens": "Max Tokens"
+    },
+    "step": {
+      "title": "Step Configuration",
+      "stepId": "Step ID",
+      "description": "Description",
+      "inputSchema": "Input Schema",
+      "outputSchema": "Output Schema",
+      "executeFunction": "Execute Function"
+    },
+    "tool": {
+      "title": "Tool Configuration",
+      "toolId": "Tool ID",
+      "description": "Description",
+      "inputSchema": "Input Schema",
+      "outputSchema": "Output Schema",
+      "executeFunction": "Execute Function",
+      "requireApproval": "Require Approval"
+    }
+  },
+  "messages": {
+    "success": {
+      "saved": "Project saved successfully",
+      "loaded": "Project loaded successfully",
+      "imported": "Project imported successfully",
+      "exported": "Code exported successfully",
+      "copied": "Copied to clipboard",
+      "previewStarted": "Preview started successfully!"
+    },
+    "error": {
+      "saveFailed": "Failed to save project",
+      "loadFailed": "Failed to load project",
+      "importFailed": "Failed to import project",
+      "exportFailed": "Failed to export code",
+      "previewFailed": "Preview failed",
+      "invalidJson": "Invalid JSON format"
+    },
+    "warning": {
+      "unsavedChanges": "You have unsaved changes",
+      "createProjectFirst": "Please create a project first",
+      "noProjectSelected": "No project selected"
+    },
+    "info": {
+      "autoSaved": "Auto-saved project",
+      "previewStopped": "Preview stopped"
+    }
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "close": "Close",
+    "apply": "Apply",
+    "import": "Import",
+    "export": "Export",
+    "load": "Load",
+    "create": "Create",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "copy": "Copy",
+    "paste": "Paste",
+    "undo": "Undo",
+    "redo": "Redo"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "delete": "Delete selected node",
+    "undo": "Undo",
+    "redo": "Redo",
+    "copy": "Copy selected node",
+    "paste": "Paste node",
+    "duplicate": "Duplicate selected node",
+    "deselect": "Deselect all",
+    "help": "Show keyboard shortcuts help"
+  }
+}

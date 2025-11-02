@@ -1,0 +1,260 @@
+{
+  "app": {
+    "title": "Constructor Visual de Mastra",
+    "defaultProjectName": "Mi Proyecto Mastra",
+    "defaultProjectDescription": "Construye tu experiencia de IA"
+  },
+  "toolbar": {
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "save": "Guardar",
+    "import": "Importar",
+    "export": "Exportar",
+    "preview": "Vista previa en WebContainer",
+    "previewStatus": {
+      "idle": "Vista previa",
+      "booting": "Iniciando...",
+      "installing": "Instalando...",
+      "starting": "Arrancando...",
+      "running": "Ejecutando",
+      "error": "Error"
+    },
+    "projectSettings": "Configuración del proyecto",
+    "codePreview": "Ver código",
+    "templates": "Biblioteca de plantillas",
+    "validation": "Validar",
+    "language": "Idioma"
+  },
+  "nodes": {
+    "agent": {
+      "label": "Agente",
+      "description": "Agente de IA que puede razonar y usar herramientas"
+    },
+    "step": {
+      "label": "Paso",
+      "description": "Ejecutar lógica personalizada"
+    },
+    "tool": {
+      "label": "Herramienta",
+      "description": "Crear herramientas reutilizables"
+    },
+    "map": {
+      "label": "Mapear",
+      "description": "Transformar y mapear datos"
+    },
+    "loop": {
+      "label": "Bucle",
+      "description": "While, until, dowhile, dountil"
+    },
+    "foreach": {
+      "label": "Para cada",
+      "description": "Iterar sobre elementos de arreglo"
+    },
+    "parallel": {
+      "label": "Paralelo",
+      "description": "Ejecutar ramas en paralelo"
+    },
+    "router": {
+      "label": "Enrutador/Rama",
+      "description": "Enrutamiento condicional"
+    },
+    "sleep": {
+      "label": "Suspender",
+      "description": "Pausar por duración"
+    },
+    "sleepUntil": {
+      "label": "Suspender hasta",
+      "description": "Pausar hasta hora específica"
+    },
+    "waitForEvent": {
+      "label": "Esperar evento",
+      "description": "Esperar activador de evento"
+    }
+  },
+  "palette": {
+    "title": "Paleta de nodos",
+    "search": "Buscar nodos...",
+    "categories": {
+      "all": "Todos los nodos",
+      "agents": "Agentes",
+      "steps": "Pasos y herramientas",
+      "control": "Flujo de control",
+      "timing": "Temporización",
+      "favorites": "Favoritos",
+      "recent": "Usados recientemente"
+    },
+    "categoriesLabel": {
+      "agents": "Agentes",
+      "steps": "Pasos",
+      "controlFlow": "Flujo de control",
+      "timing": "Temporización",
+      "tools": "Herramientas"
+    },
+    "noResults": "No se encontraron nodos"
+  },
+  "dialogs": {
+    "save": {
+      "title": "Guardar / Cargar proyecto",
+      "saveToBrowser": "Guardar en navegador",
+      "downloadAsFile": "Descargar como archivo",
+      "loadFromBrowser": "Cargar desde navegador",
+      "loadFromFile": "Cargar desde archivo",
+      "projectName": "Nombre del proyecto",
+      "enterName": "Ingrese el nombre del proyecto...",
+      "savedProjects": "Proyectos guardados",
+      "chooseFile": "Elegir archivo",
+      "load": "Cargar",
+      "delete": "Eliminar",
+      "lastModified": "Última modificación"
+    },
+    "import": {
+      "title": "Importar proyecto",
+      "description": "Importar desde archivo, código o plantilla",
+      "fromFile": "Desde archivo",
+      "fromCode": "Pegar código",
+      "upload": "Subir .mastra.json",
+      "pasteJson": "Pegue su JSON del proyecto aquí...",
+      "import": "Importar"
+    },
+    "export": {
+      "title": "Exportar código",
+      "description": "Exporta tu proyecto como código TypeScript",
+      "downloadZip": "Descargar como ZIP",
+      "saveToFolder": "Guardar en carpeta",
+      "copyToClipboard": "Copiar al portapapeles",
+      "files": "Archivos"
+    },
+    "templates": {
+      "title": "Biblioteca de plantillas",
+      "description": "Comienza con una plantilla predefinida",
+      "search": "Buscar plantillas...",
+      "apply": "Aplicar plantilla",
+      "agent": "Agente",
+      "workflow": "Flujo de trabajo"
+    },
+    "validation": {
+      "title": "Resultados de validación",
+      "errors": "Errores",
+      "warnings": "Advertencias",
+      "info": "Información",
+      "noIssues": "No se encontraron problemas de validación",
+      "validate": "Validar"
+    },
+    "apiKeys": {
+      "title": "Claves API requeridas",
+      "description": "Ingrese las claves API para los proveedores utilizados en su proyecto",
+      "provider": "Proveedor",
+      "apiKey": "Clave API",
+      "start": "Iniciar vista previa",
+      "cancel": "Cancelar"
+    },
+    "preview": {
+      "title": "Vista previa",
+      "status": "Estado",
+      "logs": "Registros",
+      "close": "Cerrar",
+      "stop": "Detener",
+      "restart": "Reiniciar",
+      "clearLogs": "Limpiar registros",
+      "openInNewTab": "Abrir en nueva pestaña"
+    },
+    "projectSettings": {
+      "title": "Configuración del proyecto",
+      "general": "General",
+      "storage": "Almacenamiento",
+      "logger": "Registrador",
+      "telemetry": "Telemetría",
+      "environment": "Variables de entorno",
+      "projectName": "Nombre del proyecto",
+      "projectDescription": "Descripción del proyecto",
+      "defaultModel": "Modelo predeterminado"
+    }
+  },
+  "config": {
+    "agent": {
+      "title": "Configuración del agente",
+      "name": "Nombre",
+      "id": "ID",
+      "instructions": "Instrucciones",
+      "model": "Modelo",
+      "tools": "Herramientas",
+      "workflows": "Flujos de trabajo",
+      "memory": "Memoria",
+      "temperature": "Temperatura",
+      "topP": "Top P",
+      "maxTokens": "Tokens máximos"
+    },
+    "step": {
+      "title": "Configuración del paso",
+      "stepId": "ID del paso",
+      "description": "Descripción",
+      "inputSchema": "Esquema de entrada",
+      "outputSchema": "Esquema de salida",
+      "executeFunction": "Función de ejecución"
+    },
+    "tool": {
+      "title": "Configuración de la herramienta",
+      "toolId": "ID de herramienta",
+      "description": "Descripción",
+      "inputSchema": "Esquema de entrada",
+      "outputSchema": "Esquema de salida",
+      "executeFunction": "Función de ejecución",
+      "requireApproval": "Requiere aprobación"
+    }
+  },
+  "messages": {
+    "success": {
+      "saved": "Proyecto guardado exitosamente",
+      "loaded": "Proyecto cargado exitosamente",
+      "imported": "Proyecto importado exitosamente",
+      "exported": "Código exportado exitosamente",
+      "copied": "Copiado al portapapeles",
+      "previewStarted": "¡Vista previa iniciada exitosamente!"
+    },
+    "error": {
+      "saveFailed": "Error al guardar el proyecto",
+      "loadFailed": "Error al cargar el proyecto",
+      "importFailed": "Error al importar el proyecto",
+      "exportFailed": "Error al exportar el código",
+      "previewFailed": "Error en la vista previa",
+      "invalidJson": "Formato JSON inválido"
+    },
+    "warning": {
+      "unsavedChanges": "Tiene cambios sin guardar",
+      "createProjectFirst": "Por favor cree un proyecto primero",
+      "noProjectSelected": "Ningún proyecto seleccionado"
+    },
+    "info": {
+      "autoSaved": "Proyecto guardado automáticamente",
+      "previewStopped": "Vista previa detenida"
+    }
+  },
+  "buttons": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "apply": "Aplicar",
+    "import": "Importar",
+    "export": "Exportar",
+    "load": "Cargar",
+    "create": "Crear",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "copy": "Copiar",
+    "paste": "Pegar",
+    "undo": "Deshacer",
+    "redo": "Rehacer"
+  },
+  "shortcuts": {
+    "title": "Atajos de teclado",
+    "delete": "Eliminar nodo seleccionado",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "copy": "Copiar nodo seleccionado",
+    "paste": "Pegar nodo",
+    "duplicate": "Duplicar nodo seleccionado",
+    "deselect": "Deseleccionar todo",
+    "help": "Mostrar ayuda de atajos de teclado"
+  }
+}
