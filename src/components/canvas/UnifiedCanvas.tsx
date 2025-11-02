@@ -28,6 +28,7 @@ import { SleepNode } from '../nodes/SleepNode';
 import { SleepUntilNode } from '../nodes/SleepUntilNode';
 import { WaitForEventNode } from '../nodes/WaitForEventNode';
 import { MapNode } from '../nodes/MapNode';
+import { MCPServerNode } from '../nodes/MCPServerNode';
 
 const nodeTypes = {
   agent: AgentNode,
@@ -42,6 +43,7 @@ const nodeTypes = {
   sleepuntil: SleepUntilNode,
   waitforevent: WaitForEventNode,
   map: MapNode,
+  mcpserver: MCPServerNode,
 };
 
 export function UnifiedCanvas() {
@@ -286,6 +288,19 @@ function getDefaultConfigForType(type: string) {
       return {
         description: 'Map data',
         fields: {},
+      };
+    case 'mcpserver':
+      return {
+        id: '',
+        name: 'New MCP Server',
+        description: '',
+        type: 'filesystem',
+        transport: 'stdio',
+        command: '',
+        args: [],
+        env: {},
+        autoStart: true,
+        tools: [],
       };
     default:
       return {};

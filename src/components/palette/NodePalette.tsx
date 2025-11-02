@@ -13,6 +13,7 @@ import {
   Search,
   Star,
   Clock as ClockIcon,
+  Server,
 } from 'lucide-react';
 import { BuilderSidebar, SidebarSection } from '../builder/BuilderSidebar';
 import { cn } from '../../lib/utils';
@@ -116,6 +117,13 @@ const nodeCategories = {
       icon: <Wrench className="h-4 w-4" />,
       description: 'Reusable tool for agents to execute',
       color: 'bg-primary/60',
+    },
+    {
+      type: 'mcpserver',
+      label: 'MCP Server',
+      icon: <Server className="h-4 w-4" />,
+      description: 'Model Context Protocol server for external tools',
+      color: 'bg-blue-500',
     },
   ],
 };
