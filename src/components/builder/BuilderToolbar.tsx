@@ -201,7 +201,7 @@ export function BuilderToolbar({
         )}
 
         {/* Test */}
-        {onTest && <ToolbarButton onClick={onTest} tooltip="Test" icon={<Play className="h-4 w-4" />} />}
+        {onTest && <ToolbarButton onClick={onTest} tooltip={t('toolbar.test')} icon={<Play className="h-4 w-4" />} />}
 
         <div className="mx-2 h-6 w-px bg-border" />
 

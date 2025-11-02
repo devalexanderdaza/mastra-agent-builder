@@ -23,7 +23,8 @@
     "codePreview": "View Code",
     "templates": "Template Library",
     "validation": "Validate",
-    "language": "Language"
+    "language": "Language",
+    "test": "Test"
   },
   "nodes": {
     "agent": {

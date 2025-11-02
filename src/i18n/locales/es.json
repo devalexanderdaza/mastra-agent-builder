@@ -23,7 +23,8 @@
     "codePreview": "Ver código",
     "templates": "Biblioteca de plantillas",
     "validation": "Validar",
-    "language": "Idioma"
+    "language": "Idioma",
+    "test": "Probar"
   },
   "nodes": {
     "agent": {
