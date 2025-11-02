@@ -9,3 +9,4 @@ export * from './SleepNode';
 export * from './SleepUntilNode';
 export * from './WaitForEventNode';
 export * from './MapNode';
+export * from './MCPServerNode';

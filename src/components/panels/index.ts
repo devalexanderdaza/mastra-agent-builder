@@ -10,3 +10,4 @@ export * from './SleepConfigPanel';
 export * from './WaitForEventConfigPanel';
 export * from './MapConfigPanel';
 export * from './ProjectPropertiesPanel';
+export * from './MCPServerConfigPanel';
