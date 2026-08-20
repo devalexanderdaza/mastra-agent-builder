@@ -77,7 +77,8 @@ export class MCPServerCodeGenerator {
     // Import MCP servers
     lines.push(`// Import MCP servers`);
     configs.forEach(config => {
-      lines.push(`import { ${this.getServerVarName(config.id)} } from './mcp/${config.id}';`);
+      const fileId = config.id.replace(/[^a-zA-Z0-9_-]/g, '_');
+      lines.push(`import { ${this.getServerVarName(config.id)} } from './mcp/${fileId}';`);
     });
     lines.push(``);
 
