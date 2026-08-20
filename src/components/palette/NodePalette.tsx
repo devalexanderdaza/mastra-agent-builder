@@ -15,6 +15,7 @@ import {
   Clock as ClockIcon,
   Server,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { BuilderSidebar, SidebarSection } from '../builder/BuilderSidebar';
 import { cn } from '../../lib/utils';
 
@@ -31,91 +32,92 @@ interface NodePaletteItem {
 type PaletteView = 'nodes' | 'favorites' | 'recent';
 type NodeCategory = 'all' | 'agents' | 'steps' | 'control' | 'timing' | 'tools';
 
-const nodeCategories = {
+// Function to get node categories with translations
+const getNodeCategories = (t: any) => ({
   Agents: [
     {
       type: 'agent',
-      label: 'Agent',
+      label: t('nodes.agent.label'),
       icon: <Bot className="h-4 w-4" />,
-      description: 'AI agent that can reason and use tools',
+      description: t('nodes.agent.description'),
       color: 'bg-primary',
     },
   ],
   Steps: [
     {
       type: 'step',
-      label: 'Step',
+      label: t('nodes.step.label'),
       icon: <Settings className="h-4 w-4" />,
-      description: 'Execute custom logic',
+      description: t('nodes.step.description'),
       color: 'bg-secondary',
     },
     {
       type: 'map',
-      label: 'Map',
+      label: t('nodes.map.label'),
       icon: <ArrowRightLeft className="h-4 w-4" />,
-      description: 'Transform and map data',
+      description: t('nodes.map.description'),
       color: 'bg-accent',
     },
   ],
   'Control Flow': [
     {
       type: 'loop',
-      label: 'Loop',
+      label: t('nodes.loop.label'),
       icon: <GitBranch className="h-4 w-4" />,
-      description: 'While, until, dowhile, dountil',
+      description: t('nodes.loop.description'),
       color: 'bg-destructive',
     },
     {
       type: 'foreach',
-      label: 'For Each',
+      label: t('nodes.foreach.label'),
       icon: <ListOrdered className="h-4 w-4" />,
-      description: 'Iterate over array items',
+      description: t('nodes.foreach.description'),
       color: 'bg-muted',
     },
     {
       type: 'parallel',
-      label: 'Parallel',
+      label: t('nodes.parallel.label'),
       icon: <GitBranch className="h-4 w-4" />,
-      description: 'Execute branches in parallel',
+      description: t('nodes.parallel.description'),
       color: 'bg-primary/80',
     },
     {
       type: 'router',
-      label: 'Branch',
+      label: t('nodes.router.label'),
       icon: <GitMerge className="h-4 w-4" />,
-      description: 'Conditional branching',
+      description: t('nodes.router.description'),
       color: 'bg-secondary/80',
     },
   ],
   Timing: [
     {
       type: 'sleep',
-      label: 'Sleep',
+      label: t('nodes.sleep.label'),
       icon: <Clock className="h-4 w-4" />,
-      description: 'Pause for duration',
+      description: t('nodes.sleep.description'),
       color: 'bg-accent/80',
     },
     {
       type: 'sleepuntil',
-      label: 'Sleep Until',
+      label: t('nodes.sleepUntil.label'),
       icon: <Calendar className="h-4 w-4" />,
-      description: 'Pause until specific time',
+      description: t('nodes.sleepUntil.description'),
       color: 'bg-destructive/80',
     },
     {
       type: 'waitforevent',
-      label: 'Wait For Event',
+      label: t('nodes.waitForEvent.label'),
       icon: <Radio className="h-4 w-4" />,
-      description: 'Wait for external event',
+      description: t('nodes.waitForEvent.description'),
       color: 'bg-muted/80',
     },
   ],
   Tools: [
     {
       type: 'tool',
-      label: 'Tool',
+      label: t('nodes.tool.label'),
       icon: <Wrench className="h-4 w-4" />,
-      description: 'Reusable tool for agents to execute',
+      description: t('nodes.tool.description'),
       color: 'bg-primary/60',
     },
     {
@@ -126,9 +128,11 @@ const nodeCategories = {
       color: 'bg-blue-500',
     },
   ],
-};
+});
 
 export function NodePalette() {
+  const { t } = useTranslation();
+  const nodeCategories = getNodeCategories(t);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentView, setCurrentView] = useState<PaletteView>('nodes');
   const [selectedCategory, setSelectedCategory] = useState<NodeCategory>('all');
@@ -185,7 +189,7 @@ export function NodePalette() {
     return recentNodes
       .map(nodeType => allNodes.find(node => node.type === nodeType))
       .filter(Boolean) as NodePaletteItem[];
-  }, [recentNodes]);
+  }, [recentNodes, nodeCategories]);
 
   // Get favorite items
   const favoriteItems: NodePaletteItem[] = React.useMemo(() => {
@@ -193,7 +197,7 @@ export function NodePalette() {
     return Array.from(favorites)
       .map(nodeType => allNodes.find(node => node.type === nodeType))
       .filter(Boolean) as NodePaletteItem[];
-  }, [favorites]);
+  }, [favorites, nodeCategories]);
 
   // Filter nodes based on search query and category
   const filteredCategories = React.useMemo(() => {
@@ -235,17 +239,17 @@ export function NodePalette() {
     });
 
     return filtered;
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, nodeCategories]);
 
   return (
-    <BuilderSidebar title="Components">
+    <BuilderSidebar title={t('palette.title')}>
       {/* View Tabs */}
       <div className="px-3 py-2 border-b border-border">
         <div className="flex gap-1">
           {[
-            { id: 'nodes', label: 'Nodes', icon: Settings },
-            { id: 'favorites', label: 'Favorites', icon: Star },
-            { id: 'recent', label: 'Recent', icon: ClockIcon },
+            { id: 'nodes', label: t('palette.categories.all'), icon: Settings },
+            { id: 'favorites', label: t('palette.categories.favorites'), icon: Star },
+            { id: 'recent', label: t('palette.categories.recent'), icon: ClockIcon },
           ].map(tab => (
             <button
               key={tab.id}
@@ -270,7 +274,7 @@ export function NodePalette() {
           <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
-            placeholder="Search nodes..."
+            placeholder={t('palette.search')}
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-3 py-1.5 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder:text-muted-foreground"
@@ -283,12 +287,12 @@ export function NodePalette() {
         <div className="px-3 py-2 border-b border-border">
           <div className="flex gap-1 overflow-x-auto">
             {[
-              { id: 'all', label: 'All' },
-              { id: 'agents', label: 'Agents' },
-              { id: 'steps', label: 'Steps' },
-              { id: 'control', label: 'Control' },
-              { id: 'timing', label: 'Timing' },
-              { id: 'tools', label: 'Tools' },
+              { id: 'all', label: t('palette.categories.all') },
+              { id: 'agents', label: t('palette.categoriesLabel.agents') },
+              { id: 'steps', label: t('palette.categoriesLabel.steps') },
+              { id: 'control', label: t('palette.categoriesLabel.controlFlow') },
+              { id: 'timing', label: t('palette.categoriesLabel.timing') },
+              { id: 'tools', label: t('palette.categoriesLabel.tools') },
             ].map(category => (
               <button
                 key={category.id}
@@ -313,7 +317,7 @@ export function NodePalette() {
           <>
             {Object.entries(filteredCategories).length === 0 && (
               <div className="p-4 text-center text-sm text-muted-foreground">
-                No nodes found matching "{searchQuery}"
+                {t('palette.noResults')}
               </div>
             )}
             {Object.entries(filteredCategories).map(([category, items]) => (

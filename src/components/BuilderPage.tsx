@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BuilderLayout } from './BuilderLayout';
 import { BuilderToolbar } from './builder/BuilderToolbar';
 import { NodePalette } from './palette/NodePalette';
@@ -20,6 +21,7 @@ import type { Template } from '../lib/templates';
 import { X } from 'lucide-react';
 
 export function BuilderPage() {
+  const { t } = useTranslation();
   const {
     project,
     setProject,
@@ -63,8 +65,8 @@ export function BuilderPage() {
     if (!project) {
       const defaultProject: ProjectConfig = {
         id: `project-${Date.now()}`,
-        name: 'My Mastra Project',
-        description: 'Build your AI experience',
+        name: t('app.defaultProjectName'),
+        description: t('app.defaultProjectDescription'),
         nodes: [],
         edges: [],
         settings: {
@@ -82,7 +84,7 @@ export function BuilderPage() {
       };
       setProject(defaultProject);
     }
-  }, [project, setProject]);
+  }, [project, setProject, t]);
 
   // Initialize WebContainer manager
   useEffect(() => {
@@ -111,7 +113,7 @@ export function BuilderPage() {
   // Handle preview button click
   const handlePreviewClick = () => {
     if (!project) {
-      showToast('warning', 'Please create a project first');
+      showToast('warning', t('messages.warning.createProjectFirst'));
       return;
     }
     
@@ -163,12 +165,12 @@ export function BuilderPage() {
       const url = await manager.startDevServer(onLog, onStatus);
       setServerUrl(url);
       
-      showToast('success', 'Preview started successfully!');
+      showToast('success', t('messages.success.previewStarted'));
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       addPreviewLog(`[ERROR] ${errorMsg}`);
       setPreviewStatus('error');
-      showToast('error', `Preview failed: ${errorMsg}`);
+      showToast('error', `${t('messages.error.previewFailed')}: ${errorMsg}`);
     }
   };
 
@@ -180,7 +182,7 @@ export function BuilderPage() {
         await manager.stopDevServer((msg) => addPreviewLog(`[INFO] ${msg}`));
         setPreviewStatus('idle');
         setServerUrl(null);
-        showToast('info', 'Preview stopped');
+        showToast('info', t('messages.info.previewStopped'));
       }
     } catch (error) {
       console.error('Failed to stop preview:', error);
@@ -277,7 +279,7 @@ export function BuilderPage() {
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-foreground">Save / Load Project</h2>
+                <h2 className="text-lg font-semibold text-foreground">{t('dialogs.save.title')}</h2>
                 <button onClick={toggleSaveDialog} className="p-2 hover:bg-accent rounded-md" aria-label="Close">
                   <X className="h-4 w-4" />
                 </button>
@@ -299,8 +301,8 @@ export function BuilderPage() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-lg font-semibold text-foreground">Import Project</h2>
-                  <p className="text-sm text-muted-foreground">Import from file, code, or template</p>
+                  <h2 className="text-lg font-semibold text-foreground">{t('dialogs.import.title')}</h2>
+                  <p className="text-sm text-muted-foreground">{t('dialogs.import.description')}</p>
                 </div>
                 <button onClick={toggleImportDialog} className="p-2 hover:bg-accent rounded-md" aria-label="Close">
                   <X className="h-4 w-4" />
