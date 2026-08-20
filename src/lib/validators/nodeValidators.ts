@@ -212,6 +212,16 @@ export function validateMCPServerNode(node: CanvasNode): ValidationError[] {
   }
 
   // Validate transport-specific configuration
+  if (!config.transport) {
+    errors.push({
+      nodeId: node.id,
+      field: 'transport',
+      message: 'Transport is required',
+      severity: 'error',
+    });
+    return errors;
+  }
+
   if (config.transport === 'stdio') {
     if (!config.command || config.command.trim() === '') {
       errors.push({
