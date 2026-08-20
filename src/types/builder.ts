@@ -1,5 +1,6 @@
 import type { AgentBuilderConfig } from './agent';
 import type { ToolBuilderConfig } from './tool';
+import type { MCPServerConfig } from './mcp';
 
 /**
  * Main builder state - Unified Canvas Approach
@@ -88,12 +89,13 @@ export type NodeType =
   | 'sleep'
   | 'sleepuntil'
   | 'waitforevent'
-  | 'map';
+  | 'map'
+  | 'mcpserver';
 
 /**
  * Node data varies by type
  */
-export type NodeData = AgentNodeData | StepNodeData | ToolNodeData | TriggerNodeData | LogicNodeData;
+export type NodeData = AgentNodeData | StepNodeData | ToolNodeData | TriggerNodeData | LogicNodeData | MCPServerNodeData;
 
 export interface AgentNodeData {
   type: 'agent';
@@ -131,6 +133,11 @@ export interface LogicNodeData {
     condition?: string;
     routes?: Array<{ condition: string; label: string }>;
   };
+}
+
+export interface MCPServerNodeData {
+  type: 'mcpserver';
+  config: MCPServerConfig;
 }
 
 /**

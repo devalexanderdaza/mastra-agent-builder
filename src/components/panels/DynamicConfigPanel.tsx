@@ -9,6 +9,7 @@ import { BranchConfigPanel } from './BranchConfigPanel';
 import { SleepConfigPanel } from './SleepConfigPanel';
 import { WaitForEventConfigPanel } from './WaitForEventConfigPanel';
 import { MapConfigPanel } from './MapConfigPanel';
+import { MCPServerConfigPanel } from './MCPServerConfigPanel';
 
 export function DynamicConfigPanel() {
   const { project, ui, setSelectedNode, duplicateNode } = useBuilderState();
@@ -77,6 +78,7 @@ export function DynamicConfigPanel() {
         )}
         {selectedNode.type === 'waitforevent' && <WaitForEventConfigPanel nodeId={selectedNode.id} />}
         {selectedNode.type === 'map' && <MapConfigPanel nodeId={selectedNode.id} />}
+        {selectedNode.type === 'mcpserver' && <MCPServerConfigPanel nodeId={selectedNode.id} />}
         {selectedNode.type === 'parallel' && (
           <div className="p-4 space-y-4">
             <h2 className="text-lg font-semibold">Parallel Configuration</h2>
@@ -109,6 +111,7 @@ export function DynamicConfigPanel() {
           'sleepuntil',
           'waitforevent',
           'map',
+          'mcpserver',
         ].includes(selectedNode.type) && (
           <div className="p-4 text-sm text-muted-foreground">
             Configuration panel for {selectedNode.type} nodes not implemented.

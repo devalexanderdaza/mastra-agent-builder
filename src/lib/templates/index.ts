@@ -16,6 +16,7 @@ export {
   emailAutomationSystemTemplate,
   multiAgentResearchSystemTemplate,
 } from './experienceTemplates';
+export { mcpServerTemplates } from './mcpServerTemplates';
 export type {
   Template,
   TemplateCategory,

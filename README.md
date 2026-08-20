@@ -4,9 +4,10 @@ A powerful visual interface for building AI agents, workflows, and tools without
 
 ## 🚀 Features
 
-- **Visual Canvas** - Drag-and-drop interface with 11 Mastra node types
+- **Visual Canvas** - Drag-and-drop interface with 12 Mastra node types including MCP servers
+- **MCP Server Integration** - Connect external tools and services through Model Context Protocol
 - **Code Generation** - Export production-ready TypeScript code
-- **Template Library** - 7+ pre-built templates to get started quickly
+- **Template Library** - 30+ pre-built templates including MCP server configurations
 - **Real-time Validation** - Catch errors before export
 - **Project Management** - Save, load, import, and export projects
 - **Keyboard Shortcuts** - Efficient workflow with keyboard navigation
@@ -123,6 +124,28 @@ Create reusable tools for agents.
 - Input/output schemas
 - Execute function
 - Require approval toggle
+
+#### MCP Server Node
+
+Connect external tools and services through the Model Context Protocol.
+
+**Configuration:**
+
+- Server ID & name
+- Server type (filesystem, database, api, git, slack, github, google-drive)
+- Transport type (stdio, http, ws)
+- Connection settings (command/args for stdio, URL for http/ws)
+- Environment variables
+- Auto-start configuration
+
+**Use Cases:**
+- File system operations
+- GitHub integration
+- Database queries
+- Slack messaging
+- API integrations
+
+See [MCP Server Guide](./docs/MCP_SERVERS.md) for detailed documentation.
 
 ### Control Flow Nodes
 

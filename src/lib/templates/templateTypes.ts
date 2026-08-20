@@ -11,7 +11,7 @@ export interface Template {
   preview?: string; // Base64 image or URL
 }
 
-export type TemplateCategory = 'agent' | 'workflow' | 'tool' | 'complete';
+export type TemplateCategory = 'agent' | 'workflow' | 'tool' | 'complete' | 'mcpserver';
 
 export interface AgentTemplate extends Template {
   category: 'agent';

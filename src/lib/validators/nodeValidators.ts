@@ -1,4 +1,4 @@
-import type { CanvasNode, AgentNodeData, StepNodeData, ToolNodeData } from '../../types';
+import type { CanvasNode, AgentNodeData, StepNodeData, ToolNodeData, MCPServerNodeData } from '../../types';
 
 export interface ValidationError {
   nodeId: string;
@@ -164,6 +164,100 @@ export function validateToolNode(node: CanvasNode): ValidationError[] {
 }
 
 /**
+ * Validate an MCP Server node
+ */
+export function validateMCPServerNode(node: CanvasNode): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  if (node.type !== 'mcpserver') return errors;
+
+  const data = node.data as MCPServerNodeData;
+  const config = data.config;
+
+  // Check required fields
+  if (!config.id || config.id.trim() === '') {
+    errors.push({
+      nodeId: node.id,
+      field: 'id',
+      message: 'MCP Server ID is required',
+      severity: 'error',
+    });
+  }
+
+  if (!config.name || config.name.trim() === '') {
+    errors.push({
+      nodeId: node.id,
+      field: 'name',
+      message: 'MCP Server name is required',
+      severity: 'error',
+    });
+  }
+
+  if (!config.type) {
+    errors.push({
+      nodeId: node.id,
+      field: 'type',
+      message: 'Server type is required',
+      severity: 'error',
+    });
+  }
+
+  if (!config.transport) {
+    errors.push({
+      nodeId: node.id,
+      field: 'transport',
+      message: 'Transport is required',
+      severity: 'error',
+    });
+  }
+
+  // Validate transport-specific configuration
+  if (!config.transport) {
+    errors.push({
+      nodeId: node.id,
+      field: 'transport',
+      message: 'Transport is required',
+      severity: 'error',
+    });
+    return errors;
+  }
+
+  if (config.transport === 'stdio') {
+    if (!config.command || config.command.trim() === '') {
+      errors.push({
+        nodeId: node.id,
+        field: 'command',
+        message: 'Command is required for stdio transport',
+        severity: 'error',
+      });
+    }
+  } else if (config.transport === 'http' || config.transport === 'ws') {
+    if (!config.url || config.url.trim() === '') {
+      errors.push({
+        nodeId: node.id,
+        field: 'url',
+        message: `URL is required for ${config.transport} transport`,
+        severity: 'error',
+      });
+    } else {
+      // Basic URL validation
+      try {
+        new URL(config.url);
+      } catch {
+        errors.push({
+          nodeId: node.id,
+          field: 'url',
+          message: 'Invalid URL format',
+          severity: 'error',
+        });
+      }
+    }
+  }
+
+  return errors;
+}
+
+/**
  * Validate all nodes in the canvas
  */
 export function validateAllNodes(nodes: CanvasNode[]): ValidationError[] {
@@ -181,6 +275,9 @@ export function validateAllNodes(nodes: CanvasNode[]): ValidationError[] {
         break;
       case 'tool':
         nodeErrors = validateToolNode(node);
+        break;
+      case 'mcpserver':
+        nodeErrors = validateMCPServerNode(node);
         break;
       // Add more node type validators as needed
       default:
