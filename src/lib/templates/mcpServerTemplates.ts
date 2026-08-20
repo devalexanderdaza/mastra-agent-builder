@@ -88,7 +88,7 @@ export const githubMCPServerTemplate: Template = {
             command: 'npx',
             args: ['@modelcontextprotocol/server-github'],
             env: {
-              GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',
+              GITHUB_TOKEN: 'your-github-token',
             },
             autoStart: true,
             tools: [
@@ -143,7 +143,7 @@ export const slackMCPServerTemplate: Template = {
             command: 'npx',
             args: ['@modelcontextprotocol/server-slack'],
             env: {
-              SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN || '',
+              SLACK_BOT_TOKEN: 'xoxb-your-token',
             },
             autoStart: true,
             tools: [
@@ -198,7 +198,7 @@ export const databaseMCPServerTemplate: Template = {
             command: 'npx',
             args: ['@modelcontextprotocol/server-postgres'],
             env: {
-              DATABASE_URL: process.env.DATABASE_URL || '',
+              DATABASE_URL: '******localhost:5432/dbname',
             },
             autoStart: true,
             tools: [

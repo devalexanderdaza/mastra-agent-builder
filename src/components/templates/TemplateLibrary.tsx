@@ -10,12 +10,14 @@ import {
   calculatorToolTemplate,
   slackNotificationToolTemplate,
   discordWebhookToolTemplate,
+  mcpServerTemplates,
   customerSupportSystemTemplate,
   contentCreationPipelineTemplate,
   dataAnalysisWorkflowTemplate,
   emailAutomationSystemTemplate,
   multiAgentResearchSystemTemplate,
   type Template,
+  type TemplateCategory as BaseTemplateCategory,
 } from '../../lib/templates';
 import { showToast } from '../ui';
 
@@ -24,7 +26,7 @@ interface TemplateLibraryProps {
   onClose?: () => void;
 }
 
-type TemplateCategory = 'all' | 'agent' | 'workflow' | 'tool' | 'complete';
+type TemplateCategory = 'all' | BaseTemplateCategory;
 
 export function TemplateLibrary({ onApplyTemplate, onClose }: TemplateLibraryProps) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -47,6 +49,7 @@ export function TemplateLibrary({ onApplyTemplate, onClose }: TemplateLibraryPro
     dataAnalysisWorkflowTemplate,
     emailAutomationSystemTemplate,
     multiAgentResearchSystemTemplate,
+    ...mcpServerTemplates,
   ];
 
   // Filter templates based on search and category
@@ -85,6 +88,7 @@ export function TemplateLibrary({ onApplyTemplate, onClose }: TemplateLibraryPro
     { id: 'workflow', label: 'Workflows', count: workflowTemplates.length },
     { id: 'tool', label: 'Tools', count: toolTemplates.length },
     { id: 'complete', label: 'Complete', count: completeTemplates.length },
+    { id: 'mcpserver', label: 'MCP Servers', count: mcpServerTemplates.length },
   ];
 
   const handleApplyTemplate = (template: Template) => {

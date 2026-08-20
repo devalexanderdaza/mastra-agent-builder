@@ -11,13 +11,9 @@ export class MCPServerCodeGenerator {
   generate(config: MCPServerConfig): string {
     const lines: string[] = [];
 
-    // Import statement
-    lines.push(`import { MCPServer } from '@mastra/core';`);
-    lines.push(``);
-
     // Generate server configuration
     lines.push(`export const ${this.getServerVarName(config.id)} = {`);
-    lines.push(`  id: '${config.id}',`);
+    lines.push(`  id: '${escapeString(config.id)}',`);
     lines.push(`  name: '${escapeString(config.name)}',`);
 
     if (config.description) {
@@ -116,7 +112,8 @@ export class MCPServerCodeGenerator {
    * Get variable name for MCP server
    */
   private getServerVarName(id: string): string {
-    return `${toCamelCase(id)}Server`;
+    const camelCaseId = toCamelCase(id);
+    return /server$/i.test(camelCaseId) ? camelCaseId : `${camelCaseId}Server`;
   }
 
   /**

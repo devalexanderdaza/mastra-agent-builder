@@ -3,6 +3,7 @@ import {
   validateAgentNode,
   validateStepNode,
   validateToolNode,
+  validateMCPServerNode,
   validateAllNodes,
   hasErrors,
   hasWarnings,
@@ -114,6 +115,73 @@ describe('nodeValidators', () => {
       const errors = validateToolNode(node);
 
       expect(errors).toHaveLength(0);
+    });
+
+    describe('validateMCPServerNode', () => {
+      const createMockMCPServerNode = () =>
+        ({
+          id: 'mcpserver-1',
+          type: 'mcpserver',
+          position: { x: 0, y: 0 },
+          data: {
+            type: 'mcpserver',
+            config: {
+              id: 'filesystemServer',
+              name: 'Filesystem Server',
+              description: 'Provides filesystem operations',
+              type: 'filesystem',
+              transport: 'stdio',
+              command: 'npx',
+              args: ['@modelcontextprotocol/server-filesystem'],
+              env: {},
+              autoStart: true,
+              tools: [],
+            },
+          },
+        }) as any;
+
+      it('should pass validation for a valid stdio MCP server node', () => {
+        const node = createMockMCPServerNode();
+        const errors = validateMCPServerNode(node);
+
+        expect(errors).toHaveLength(0);
+      });
+
+      it('should require transport', () => {
+        const node = createMockMCPServerNode();
+        delete node.data.config.transport;
+        const errors = validateMCPServerNode(node);
+
+        expect(errors.some(e => e.field === 'transport' && e.severity === 'error')).toBe(true);
+      });
+
+      it('should require command for stdio transport', () => {
+        const node = createMockMCPServerNode();
+        node.data.config.command = '';
+        const errors = validateMCPServerNode(node);
+
+        expect(errors.some(e => e.field === 'command' && e.severity === 'error')).toBe(true);
+      });
+
+      it('should require URL for http transport', () => {
+        const node = createMockMCPServerNode();
+        node.data.config.transport = 'http';
+        node.data.config.command = undefined;
+        node.data.config.url = '';
+        const errors = validateMCPServerNode(node);
+
+        expect(errors.some(e => e.field === 'url' && e.severity === 'error')).toBe(true);
+      });
+
+      it('should validate URL format for ws/http transport', () => {
+        const node = createMockMCPServerNode();
+        node.data.config.transport = 'ws';
+        node.data.config.command = undefined;
+        node.data.config.url = 'not a url';
+        const errors = validateMCPServerNode(node);
+
+        expect(errors.some(e => e.field === 'url' && e.message === 'Invalid URL format')).toBe(true);
+      });
     });
 
     it('should fail when tool ID is missing', () => {

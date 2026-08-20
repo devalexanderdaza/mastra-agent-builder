@@ -197,7 +197,7 @@ export function MCPServerConfigPanel({ nodeId }: MCPServerConfigPanelProps) {
                     type="text"
                     value={argInput}
                     onChange={e => setArgInput(e.target.value)}
-                    onKeyPress={e => e.key === 'Enter' && addArg()}
+                    onKeyDown={e => e.key === 'Enter' && addArg()}
                     placeholder="Add argument..."
                     className="flex-1 px-3 py-2 border border-border rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary font-mono text-foreground placeholder:text-muted-foreground"
                   />
@@ -241,7 +241,7 @@ export function MCPServerConfigPanel({ nodeId }: MCPServerConfigPanelProps) {
                     type="text"
                     value={envValue}
                     onChange={e => setEnvValue(e.target.value)}
-                    onKeyPress={e => e.key === 'Enter' && addEnvVar()}
+                    onKeyDown={e => e.key === 'Enter' && addEnvVar()}
                     placeholder="VALUE"
                     className="flex-1 px-3 py-2 border border-border rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary font-mono text-foreground placeholder:text-muted-foreground"
                   />
